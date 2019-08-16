@@ -1,15 +1,12 @@
 import React from "react";
-import Header from "../components/shared/Header.js";
+import BaseLayout from "../components/layouts/BaseLayout.js";
 
 class Index extends React.Component {
   render() {
     return (
-      <>
+      <BaseLayout>
         <h1>Welcome Page!</h1>
-        <Header title={`I am a Header Component`}>
-          <h1>Header Subtitle!</h1>
-        </Header>
-      </>
+      </BaseLayout>
     );
   }
 }
