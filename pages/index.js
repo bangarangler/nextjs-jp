@@ -1,15 +1,26 @@
 import React from "react";
+import Link from "next/link";
 
 class Index extends React.Component {
   render() {
     return (
       <div>
         <h1>Welcome Page!</h1>
-        <a href="/">Home!</a>
-        <a href="/about">About!</a>
-        <a href="/blogs">Blogs!</a>
-        <a href="/cv">Cv!</a>
-        <a href="/portfolios">Portfolios!</a>
+        <Link href="/">
+          <a>Home!</a>
+        </Link>
+        <Link href="/about">
+          <a>About!</a>
+        </Link>
+        <Link href="/portfolios">
+          <a>Portfolios!</a>
+        </Link>
+        <Link href="/blogs">
+          <a>Blogs!</a>
+        </Link>
+        <Link href="/about">
+          <a>About!</a>
+        </Link>
       </div>
     );
   }
