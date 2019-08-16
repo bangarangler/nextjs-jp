@@ -5,8 +5,10 @@ class Index extends React.Component {
   render() {
     return (
       <>
-        <Header />
         <h1>Welcome Page!</h1>
+        <Header title={`I am a Header Component`}>
+          <h1>Header Subtitle!</h1>
+        </Header>
       </>
     );
   }

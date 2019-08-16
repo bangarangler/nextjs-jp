@@ -3,8 +3,12 @@ import Link from "next/link";
 
 class Header extends React.Component {
   render() {
+    debugger;
+    const title = this.props.title;
     return (
-      <div>
+      <>
+        <p>{title}</p>
+        {this.props.children}
         <Link href="/">
           <a>Home!</a>
         </Link>
@@ -20,7 +24,7 @@ class Header extends React.Component {
         <Link href="/about">
           <a>About!</a>
         </Link>
-      </div>
+      </>
     );
   }
 }
