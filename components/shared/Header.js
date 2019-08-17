@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import {Link as NextLink} from '../../routes.js';
-import '../../styles/main.scss';
 
 class Header extends React.Component {
   render() {

@@ -1,5 +1,4 @@
 node_modules
-DS.Store
-D.S.Store
+.DS_Store
 .env
 .next
