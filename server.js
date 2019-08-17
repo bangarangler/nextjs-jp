@@ -1,12 +1,15 @@
 const express = require('express');
 const next = require('next');
+const routes = require('./routes.js');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
-const handle = app.getRequestHandler()
+//const handle = app.getRequestHandler()
+const handle = routes.getRequestHandler(app)
 
 app.prepare().then(() => {
   const server = express()
+  //server.use(handle)
 
   //old next version way of fixing
   //server.get('/portfolio/:id', (req, res) => {
@@ -17,7 +20,7 @@ app.prepare().then(() => {
   //})
 
   server.get('*', (req, res) => {
-    console.log('Serving all of the requests')
+    //console.log('Serving all of the requests')
     return handle(req, res)
   })
 
