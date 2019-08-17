@@ -5,13 +5,14 @@ import axios from 'axios';
 
 class Index extends SuperComponent {
   static async getInitialProps() {
-    let userData = {}
+    let userData = {};
     try {
-      const response = await axios
-        .get('https://jsonplaceholder.typicode.com/todos/1')
+      const response = await axios.get(
+        'https://jsonplaceholder.typicode.com/todos/1',
+      );
       userData = response.data;
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
     return {initialData: [1, 2, 3, 4], userData};
   }
@@ -41,13 +42,13 @@ class Index extends SuperComponent {
 
   render() {
     const {title} = this.state;
-    const { userData, initialData } = this.props;
+    const {userData, initialData} = this.props;
     console.log('render');
     return (
       <BaseLayout>
         <h1>Welcome Page!</h1>
         <h2>{title}</h2>
-          <h2>{userData.title}</h2>
+        <h2>{userData.title}</h2>
         <button onClick={this.updateTitle}>Change Title</button>
       </BaseLayout>
     );
