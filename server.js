@@ -8,7 +8,16 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
   const server = express()
 
+  //old next version way of fixing
+  //server.get('/portfolio/:id', (req, res) => {
+    //console.log('serving /portfolio/:id requests')
+    //const actualPage = '/portfolio'
+    //const queryParams = { id: req.params.id }
+    //app.render(req, res, actualPage, queryParams)
+  //})
+
   server.get('*', (req, res) => {
+    console.log('Serving all of the requests')
     return handle(req, res)
   })
 
