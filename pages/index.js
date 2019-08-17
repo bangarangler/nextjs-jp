@@ -1,44 +1,53 @@
-import React from "react";
-import BaseLayout from "../components/layouts/BaseLayout.js";
-import SuperComponent from "../components/SuperComponent.js";
+import React from 'react';
+import BaseLayout from '../components/layouts/BaseLayout.js';
+import SuperComponent from '../components/SuperComponent.js';
+import axios from 'axios';
 
 class Index extends SuperComponent {
-  static getInitialProps() {
-    console.log('get initial props')
-    return {initialData: [1,2,3,4]}
+  static async getInitialProps() {
+    let userData = {}
+    try {
+      const response = await axios
+        .get('https://jsonplaceholder.typicode.com/todos/1')
+      userData = response.data;
+    } catch (err) {
+      console.log(err)
+    }
+    return {initialData: [1, 2, 3, 4], userData};
   }
   constructor(props) {
     super(props);
     this.state = {
-      title: "I am Index Page"
+      title: 'I am Index Page',
     };
-    console.log("constructor");
+    console.log('constructor');
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
+    console.log('componentDidMount');
   }
 
   componentDidUpdate() {
-    console.log("componentDidUpdate");
+    console.log('componentDidUpdate');
   }
 
   componentWillUnmount() {
-    console.log("componentWillUnmount");
+    console.log('componentWillUnmount');
   }
 
   updateTitle = () => {
-    this.setState({ title: "updated index page" });
-  }
+    this.setState({title: 'updated index page'});
+  };
 
   render() {
-    const { title } = this.state;
-    const initialData = this.props.initialData;
-    console.log("render");
+    const {title} = this.state;
+    const { userData, initialData } = this.props;
+    console.log('render');
     return (
       <BaseLayout>
         <h1>Welcome Page!</h1>
         <h2>{title}</h2>
+          <h2>{userData.title}</h2>
         <button onClick={this.updateTitle}>Change Title</button>
       </BaseLayout>
     );
