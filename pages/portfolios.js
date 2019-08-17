@@ -1,6 +1,8 @@
 import React from "react";
 import BaseLayout from "../components/layouts/BaseLayout.js";
 import axios from 'axios';
+import Portfolio from './portfolio.js';
+import Link from 'next/link';
 
 class Portfolios extends React.Component {
   static async getInitialProps() {
@@ -18,7 +20,7 @@ class Portfolios extends React.Component {
     return posts.map(post => {
       return (
         <div key={post.id}>
-        <li>{post.title}</li>
+        <li><Link href={`/portfolio?title=${post.title}`}><a>{post.title}</a></Link></li>
         </div>
       )
     })
