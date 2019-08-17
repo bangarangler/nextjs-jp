@@ -1,5 +1,5 @@
 import React from 'react'
-import BaseLayout from '../components/layouts/BaseLayout.js';
+import BaseLayout from '../../components/layouts/BaseLayout.js';
 import { withRouter } from 'next/router';
 
 class Portfolio extends React.Component {
@@ -8,7 +8,7 @@ class Portfolio extends React.Component {
     return (
       <div>
       <p>test</p>
-      <h2>{this.props.router.query.title}</h2>
+      <h2>{this.props.router.query.id}</h2>
       </div>
     )
   }
