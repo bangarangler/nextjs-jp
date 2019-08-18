@@ -1,11 +1,22 @@
 const express = require('express');
 const next = require('next');
-const routes = require('./routes.js');
+const routes = require('../routes.js');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 //const handle = app.getRequestHandler()
 const handle = routes.getRequestHandler(app)
+
+const secretData = [
+  {
+    title: 'SecretData 1',
+    description: 'Plans of how to build spaceship.'
+  },
+  {
+    title: 'SecretData 2',
+    description: 'My secret pws'
+  }
+]
 
 app.prepare().then(() => {
   const server = express()
@@ -18,6 +29,10 @@ app.prepare().then(() => {
     //const queryParams = { id: req.params.id }
     //app.render(req, res, actualPage, queryParams)
   //})
+
+  server.get('/api/v1/secret', (req, res) => {
+    return res.json(secretData)
+  })
 
   server.get('*', (req, res) => {
     //console.log('Serving all of the requests')
