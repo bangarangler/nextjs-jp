@@ -9,8 +9,9 @@ class Index extends React.Component {
     this.roles = ['Developer', 'React', 'Node.js', 'GraphQL', 'MongoDB', 'SQL', 'Python', 'C', 'Gatsby', 'Next.js', 'Express', 'Svelte', 'Sapper']
   }
   render() {
+    const { isAuthenticated, user } = this.props.auth;
     return (
-      <BaseLayout className="cover">
+      <BaseLayout {...this.props.auth} className="cover">
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png" />
@@ -42,7 +43,8 @@ class Index extends React.Component {
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the portfolio website of Jon Palacio Get
+                    { isAuthenticated && <span><b>{user.given_name} &nbsp;</b></span> }
+                    Welcome to my server side rendered portfolio website! Get
                     informed, collaborate and discover projects I've worked on
                     through the years!
                   </h1>
