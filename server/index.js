@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const next = require('next');
 const routes = require('../routes.js');
@@ -40,6 +41,12 @@ app.prepare().then(() => {
   server.get('*', (req, res) => {
     //console.log('Serving all of the requests')
     return handle(req, res)
+  })
+
+  server.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).send({title: 'Unauthorized', detail: 'Unauthorized access'})
+    }
   })
 
   server.listen(3000, (err) => {
