@@ -1,6 +1,7 @@
 import React from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
-import {Button, FormGroup, Label } from 'reactstrap';
+import {Button, FormGroup, Label} from 'reactstrap';
+import PortInput from '../form/FormInput.js';
 
 const validateInputs = validate => {
   let errors = {};
@@ -37,35 +38,35 @@ const PortfolioCreateForm = () => (
       }}>
       {({isSubmitting}) => (
         <Form>
-          <FormGroup>
-            <Label>Title</Label>
-            <Field className="form-control" type="text" name="title" />
-            <ErrorMessage name="title" component="div" />
-          </FormGroup>
+          <Field type="text" name="title" component={PortInput} label="Title" />
 
-          <FormGroup>
-            <Label>Company</Label>
-            <Field className="form-control" type="text" name="company" />
-            <ErrorMessage name="company" component="div" />
-          </FormGroup>
+          <Field
+            type="text"
+            name="company"
+            component={PortInput}
+            label="Company"
+          />
 
-          <FormGroup>
-            <Label>Location</Label>
-            <Field className="form-control" type="text" name="location" />
-            <ErrorMessage name="location" component="div" />
-          </FormGroup>
+          <Field
+            type="text"
+            name="location"
+            component={PortInput}
+            label="Location"
+          />
 
-          <FormGroup>
-            <Label>Position</Label>
-            <Field className="form-control" type="text" name="position" />
-            <ErrorMessage name="position" component="div" />
-          </FormGroup>
+          <Field
+            type="text"
+            name="position"
+            component={PortInput}
+            label="Position"
+          />
 
-          <FormGroup>
-            <Label>Description</Label>
-            <Field className="form-control" type="textarea" name="description" component="textarea" />
-            <ErrorMessage name="description" component="div" />
-          </FormGroup>
+          <Field
+            type="textarea"
+            name="description"
+            component={PortInput}
+            label="Description"
+          />
 
           <FormGroup>
             <Label>Start Date</Label>
@@ -75,7 +76,11 @@ const PortfolioCreateForm = () => (
 
           <FormGroup>
             <Label>End Date</Label>
-            <Field className="form-control" type="text" name="endDate" />
+            <Field
+              className="form-control"
+              type="text"
+              name="endDate"
+            />
             <ErrorMessage name="endDate" component="div" />
           </FormGroup>
 
