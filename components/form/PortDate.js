@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import { FormGroup, Label } from 'reactstrap';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -14,18 +15,32 @@ export default class PortDate extends React.Component {
   }
 
   handleChange(date) {
-    const formattedDate = date.format()
+    const { setFieldValue, setFieldTouched } = this.props.form;
+    const { name } = this.props.field;
     this.setState({
       dateValue: date
     })
+    setFieldValue(name, date, true)
+    setFieldTouched(name, true, true)
   }
 
   render() {
+    const { label } = this.props;
     return (
-      <DatePicker
-      selected={this.state.dateValue}
-      onChange={this.handleChange}
-      />
+      <FormGroup>
+        <Label>{label}</Label>
+      <div className="input-group">
+        <DatePicker
+        selected={this.state.dateValue}
+        onChange={this.handleChange}
+        peekNextMonth
+        showMonthDropdown
+        showYearDropdown
+        maxDate={moment()}
+        dropdownMode="select"
+        />
+      </div>
+      </FormGroup>
     )
   }
 }
