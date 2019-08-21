@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const next = require('next');
+const mongoose = require('mongoose');
 const routes = require('../routes.js');
 
 // SERVICES
@@ -21,6 +22,10 @@ const secretData = [
     description: 'My secret pws'
   }
 ]
+
+const url = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@portfolio-nextjs-jp-1webv.mongodb.net/test?retryWrites=true&w=majority`
+
+mongoose.connect(url, { useNewUrlParser: true }).then(() => console.log('Database Connected!')).catch(err => console.log(err))
 
 app.prepare().then(() => {
   const server = express()
