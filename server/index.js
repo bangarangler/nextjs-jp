@@ -49,6 +49,43 @@ app
         return res.json(createdBook);
       })
     })
+
+    server.get('/api/v1/books', (req, res) => {
+      Book.find({}, (err, allBooks) => {
+        if (err) {
+          return res.status(422).send(err);
+        }
+        return res.json(allBooks);
+      })
+    })
+
+    server.patch('/api/v1/books/:id', (req, res) => {
+      const bookId = req.params.id;
+      const bookData = req.body;
+
+      Book.findById(bookId, (err, foundBook) => {
+        if (err) {
+          return res.status(422).send(err)
+        }
+        foundBook.set(bookData);
+        foundBook.save((err, savedBook) => {
+          if (err) {
+            return res.status(422).send(err)
+          }
+          return res.json(foundBook);
+        })
+      })
+    })
+
+    server.delete('/api/v1/books/:id', (req, res) => {
+      const bookId = req.params.id;
+      Book.deleteOne({ _id: bookId }, (err, deletedBook) => {
+        if (err) {
+          return res.status(422).send(err)
+        }
+        return res.json({status: 'DELETED!'})
+      })
+    })
     //server.use(handle)
 
     //old next version way of fixing
