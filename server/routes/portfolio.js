@@ -13,8 +13,6 @@ router.post(
 
 router.get(
   '',
-  authService.checkJWT,
-  authService.checkRole('siteOwner'),
   portfolioController.getPortfolios,
 );
 
