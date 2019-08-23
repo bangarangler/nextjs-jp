@@ -33,7 +33,7 @@ exports.updateBook = (req, res) => {
       if (err) {
         return res.status(422).send(err);
       }
-      return res.json(foundBook);
+      return res.json(savedBook);
     });
   });
 };
