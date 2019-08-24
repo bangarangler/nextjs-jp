@@ -2,6 +2,7 @@ import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout.js';
 import BasePage from '../components/BasePage.js';
 import withAuth from '../components/hoc/withAuth.js';
+import { Router } from '../routes';
 import PortfolioCreateForm from '../components/portfolios/PortfolioCreateForm.js';
 import {Row, Col} from 'reactstrap';
 import { createPortfolio } from '../actions';
@@ -16,11 +17,16 @@ class PortfolioNew extends React.Component {
     this.savePortfolio = this.savePortfolio.bind(this);
   }
 
-  savePortfolio(portfolioData) {
+  savePortfolio(portfolioData, {setSubmitting}) {
+    setSubmitting(true)
     createPortfolio(portfolioData).then((portfolio) => {
+      setSubmitting(false)
       this.setState({error: undefined})
+      Router.pushRoute('/portfolios')
     }).catch(( err ) => {
-      this.setState({error: err.message});
+      const error = err.message || 'Server Error!'
+      setSubmitting(false)
+      this.setState({error});
     }
     )}
 
