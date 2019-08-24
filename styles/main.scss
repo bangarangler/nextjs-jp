@@ -1,8 +1,9 @@
 @import './shared/fonts';
 @import './shared/colors';
-@import './shared/portfolios';
 // PAGES
 @import './index';
+@import './_portfolios';
+@import './blogs';
 // COMPONENTS
 @import './header';
 
