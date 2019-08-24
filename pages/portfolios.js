@@ -13,7 +13,7 @@ import {
   CardTitle,
   Button,
 } from 'reactstrap';
-import {getPortfolios} from '../actions';
+import {getPortfolios, deletePortfolio} from '../actions';
 import {Router} from '../routes';
 
 class Portfolios extends React.Component {
@@ -25,6 +25,23 @@ class Portfolios extends React.Component {
       console.error(err);
     }
     return {portfolios};
+  }
+
+  displayDeleteWarning(portfolioId) {
+    const isConfirm = confirm(
+      'Are you sure you want to delete this portfolio?',
+    );
+
+    if (isConfirm) {
+      this.deletePortfolio(portfolioId);
+    }
+  }
+
+  deletePortfolio(portfolioId) {
+    deletePortfolio(portfolioId)
+      .then(() => {})
+      Router.pushRoute('/portfolios')
+      .catch(err => console.error(err));
   }
 
   renderPortfolios(portfolios) {
@@ -59,7 +76,13 @@ class Portfolios extends React.Component {
                           color="warning">
                           Edit
                         </Button>{' '}
-                        <Button color="danger">Delete</Button>
+                        <Button
+                          onClick={() =>
+                            this.displayDeleteWarning(portfolio._id)
+                          }
+                          color="danger">
+                          Delete
+                        </Button>
                       </>
                     )}
                   </div>
