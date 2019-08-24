@@ -2,15 +2,11 @@ import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout.js';
 import BasePage from '../components/BasePage.js';
 import Portfolio from './portfolio/[id].js';
+import PortfolioCard from '../components/portfolios/PortfolioCard.js';
 import Link from 'next/link';
 import {
   Row,
   Col,
-  Card,
-  CardHeader,
-  CardBody,
-  CardText,
-  CardTitle,
   Button,
 } from 'reactstrap';
 import {getPortfolios, deletePortfolio} from '../actions';
@@ -38,10 +34,8 @@ class Portfolios extends React.Component {
   }
 
   deletePortfolio(portfolioId) {
-    deletePortfolio(portfolioId)
-      .then(() => {})
-      Router.pushRoute('/portfolios')
-      .catch(err => console.error(err));
+    deletePortfolio(portfolioId).then(() => {});
+    Router.pushRoute('/portfolios').catch(err => console.error(err));
   }
 
   renderPortfolios(portfolios) {
@@ -50,46 +44,24 @@ class Portfolios extends React.Component {
     return portfolios.map((portfolio, index) => {
       return (
         <Col md="4" key={index}>
-          <React.Fragment>
-            <span>
-              <Card className="portfolio-card">
-                <CardHeader className="portfolio-card-header">
-                  {portfolio.position}
-                </CardHeader>
-                <CardBody>
-                  <p className="portfolio-card-city">{portfolio.location}</p>
-                  <CardTitle className="portfolio-card-title">
-                    {portfolio.title}
-                  </CardTitle>
-                  <CardText className="portfolio-card-text">
-                    {portfolio.description}
-                  </CardText>
-                  <div className="readMore">
-                    {isAuthenticated && isSiteOwner && (
-                      <>
-                        <Button
-                          onClick={() =>
-                            Router.pushRoute(
-                              `/portfolios/${portfolio._id}/edit`,
-                            )
-                          }
-                          color="warning">
-                          Edit
-                        </Button>{' '}
-                        <Button
-                          onClick={() =>
-                            this.displayDeleteWarning(portfolio._id)
-                          }
-                          color="danger">
-                          Delete
-                        </Button>
-                      </>
-                    )}
-                  </div>
-                </CardBody>
-              </Card>
-            </span>
-          </React.Fragment>
+          <PortfolioCard portfolio={portfolio}>
+            {isAuthenticated && isSiteOwner && (
+              <>
+                <Button
+                  onClick={() =>
+                    Router.pushRoute(`/portfolios/${portfolio._id}/edit`)
+                  }
+                  color="warning">
+                  Edit
+                </Button>{' '}
+                <Button
+                  onClick={() => this.displayDeleteWarning(portfolio._id)}
+                  color="danger">
+                  Delete
+                </Button>
+              </>
+            )}
+          </PortfolioCard>
         </Col>
       );
     });
