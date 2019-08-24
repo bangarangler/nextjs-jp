@@ -8,8 +8,9 @@ import "react-datepicker/dist/react-datepicker.css";
 export default class PortDate extends React.Component {
   constructor(props) {
     super(props)
+    const dateValue = props.initialDate ? moment(props.initialDate) : moment()
     this.state = {
-      dateValue: moment(),
+      dateValue,
       isHidden: false
     }
     this.handleChange = this.handleChange.bind(this);
