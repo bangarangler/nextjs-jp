@@ -1,6 +1,9 @@
 import React from 'react';
+
+import HoverMenu from './HoverMenu';
 import {Editor} from 'slate-react';
 import {Value} from 'slate';
+import {renderMark} from './renderers';
 
 const initialValue = Value.fromJSON({
   document: {
@@ -42,51 +45,40 @@ export default class SlateEditor extends React.Component {
   };
 
   componentDidMount() {
+    this.updateMenu();
     this.setState({isLoaded: true});
   }
+
+  componentDidUpdate = () => {
+    this.updateMenu();
+  };
 
   onChange = ({value}) => {
     this.setState({value});
   };
 
-  onKeyDown = (e, editor, next) => {
-    if (!e.ctrlKey) return next();
-    switch (e.key) {
-      case 'b': {
-        e.preventDefault();
-        editor.toggleMark('bold');
-        break;
-      }
-      case 'x': {
-        const isCode = editor.value.blocks.some(block => block.type == 'code');
-        e.preventDefault();
-        editor.setBlocks(isCode ? 'paragraph' : 'code');
-        break;
-      }
-      default: {
-        return next();
-      }
-    }
-  };
+  updateMenu = () => {
+    const menu = this.menu;
+    if (!menu) return;
 
-  renderNode = (props, editor, next) => {
-    switch (props.node.type) {
-      case 'code':
-        return <CodeNode {...props} />;
-      case 'paragraph':
-        return <p {...props.attributes}>{props.children}</p>;
-      default:
-        return next();
-    }
-  };
+    const {value} = this.state;
+    const {fragment, selection} = value;
 
-  renderMark = (props, editor, next) => {
-    switch (props.mark.type) {
-      case 'bold':
-        return <BoldMark {...props} />;
-      default:
-        return next();
+    if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
+      menu.removeAttribute('style');
+      return;
     }
+
+    const native = window.getSelection();
+    const range = native.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    menu.style.opacity = 1;
+    menu.style.top = `${rect.top + window.pageYOffset - menu.offsetHeight}px`;
+
+    menu.style.left = `${rect.left +
+      window.pageXOffset -
+      menu.offsetWidth / 2 +
+      rect.width / 2}px`;
   };
 
   render() {
@@ -95,14 +87,24 @@ export default class SlateEditor extends React.Component {
       <>
         {isLoaded && (
           <Editor
+            placeholder="some text here..."
             value={this.state.value}
             onChange={this.onChange}
-            onKeyDown={this.onKeyDown}
-            renderNode={this.renderNode}
-            renderMark={this.renderMark}
+            renderMark={renderMark}
+            renderEditor={this.renderEditor}
           />
         )}
       </>
     );
   }
+
+  renderEditor = (props, editor, next) => {
+    const children = next();
+    return (
+      <>
+        {children}
+        <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
+      </>
+    );
+  };
 }
