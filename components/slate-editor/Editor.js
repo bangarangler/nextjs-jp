@@ -49,6 +49,25 @@ export default class SlateEditor extends React.Component {
       rect.width / 2}px`;
   };
 
+  getTitle() {
+    const { value } = this.state;
+    const firstBlock = value.document.getBlocks().get(0)
+    const secondBlock = value.document.getBlocks().get(1)
+    const title = firstBlock && firstBlock.text ? firstBlock.text : 'No Title'
+    const subTitle = secondBlock && secondBlock.text ? secondBlock.text : 'No Sub Title'
+    return {
+      title,
+      subTitle
+    }
+  }
+
+  save() {
+    const { save } = this.props;
+    const headingValues = this.getTitle()
+
+    save(headingValues)
+  }
+
 
   render() {
     const {isLoaded} = this.state;
@@ -56,6 +75,7 @@ export default class SlateEditor extends React.Component {
       <>
         {isLoaded && (
           <Editor
+            {...this.props}
             placeholder="some text here..."
             value={this.state.value}
             onChange={this.onChange}
@@ -70,9 +90,10 @@ export default class SlateEditor extends React.Component {
 
   renderEditor = (props, editor, next) => {
     const children = next();
+    const { isLoading } = props;
     return (
       <>
-        <ControlMenu />
+        <ControlMenu isLoading={isLoading} save={() => this.save()} />
         {children}
         <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
       </>
