@@ -16,6 +16,7 @@ const config = require('./config')
 const bodyParser = require('body-parser');
 const bookRoutes = require('./routes/book.js');
 const portfolioRoutes = require('./routes/portfolio.js');
+const blogRoutes = require('./routes/blog.js');
 
 const secretData = [
   {
@@ -41,6 +42,7 @@ app
     server.use(bodyParser.json());
     server.use('/api/v1/books', bookRoutes);
     server.use('/api/v1/portfolios', portfolioRoutes)
+    server.use('/api/v1/blogs', blogRoutes)
 
     //server.use(handle)
 
