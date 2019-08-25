@@ -7,20 +7,24 @@ const BaseLayout = props => {
   const headerType = props.headerType || 'default';
   return (
     <>
-    <Head>
-    <title>Jonathan Dain Palacio</title>
-    <script src="https://kit.fontawesome.com/530582d694.js"></script>
-    </Head>
-    <div className="layout-container">
-      <Header
-        className={`port-nav-${headerType}`}
-        isAuthenticated={isAuthenticated}
-        user={user}
-      />
-      <main className={`cover ${className}`}>
-        <div className="wrapper">{children}</div>
-      </main>
-    </div>
+      <Head>
+        <title>Jonathan Dain Palacio</title>
+        <script src="https://kit.fontawesome.com/530582d694.js" />
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
+      </Head>
+      <div className="layout-container">
+        <Header
+          className={`port-nav-${headerType}`}
+          isAuthenticated={isAuthenticated}
+          user={user}
+        />
+        <main className={`cover ${className}`}>
+          <div className="wrapper">{children}</div>
+        </main>
+      </div>
     </>
   );
 };

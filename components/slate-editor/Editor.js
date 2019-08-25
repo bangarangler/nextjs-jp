@@ -2,41 +2,8 @@ import React from 'react';
 
 import HoverMenu from './HoverMenu';
 import {Editor} from 'slate-react';
-import {Value} from 'slate';
 import {renderMark} from './renderers';
-
-const initialValue = Value.fromJSON({
-  document: {
-    nodes: [
-      {
-        object: 'block',
-        type: 'paragraph',
-        nodes: [
-          {
-            object: 'text',
-            leaves: [
-              {
-                text: 'A line of text in a paragraph.',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-});
-
-function CodeNode(props) {
-  return (
-    <pre {...props.attributes}>
-      <code>{props.children}</code>
-    </pre>
-  );
-}
-
-function BoldMark(props) {
-  return <strong>{props.children}</strong>;
-}
+import { initialValue } from './initial-value';
 
 export default class SlateEditor extends React.Component {
   state = {
@@ -80,6 +47,7 @@ export default class SlateEditor extends React.Component {
       menu.offsetWidth / 2 +
       rect.width / 2}px`;
   };
+
 
   render() {
     const {isLoaded} = this.state;
