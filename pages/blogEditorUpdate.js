@@ -9,22 +9,28 @@ import { getBlogById } from '../actions';
 class BlogEditorUpdate extends React.Component {
   static async getInitialProps({query}) {
     const blogId = query.id;
+    let blog = {}
     try {
-      const blog = await getBlogById(blogId)
-      return { blog }
+      blog = await getBlogById(blogId)
     } catch (err) {
-      return { err }
+      console.error(err)
+    }
+    return { blog }
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSaving: false
     }
   }
 
   render() {
     const { blog } = this.props;
-    console.log('blog: ', blog);
     const { isSaving } = this.state;
     return (
       <BaseLayout {...this.props.auth}>
         <BasePage containerClass="editor-wrapper" className="blog-editor-page">
-      <SlateEditor save={() => console.log('update')} isLoading={isSaving} />
+      <SlateEditor initialValue={blog.story} save={() => console.log('update')} isLoading={isSaving} />
         </BasePage>
       </BaseLayout>
     );

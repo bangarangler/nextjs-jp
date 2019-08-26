@@ -7,17 +7,20 @@ import {renderMark, renderNode} from './renderers';
 import { initialValue } from './initial-value';
 import Html from 'slate-html-serializer';
 import { rules } from './rules';
-const html = new Html({ rules })
+const html = new Html({ rules });
+import { Value } from 'slate';
 
 export default class SlateEditor extends React.Component {
   state = {
-    value: initialValue,
+    value: Value.create(),
     isLoaded: false,
   };
 
   componentDidMount() {
+    const  valueFromProps = this.props.initialValue;
+    const value = valueFromProps ? Value.fromJSON(html.deserialize(this.props.initialValue)) : Value.fromJSON(initialValue)
     this.updateMenu();
-    this.setState({isLoaded: true});
+    this.setState({isLoaded: true, value});
   }
 
   componentDidUpdate = () => {
