@@ -37,9 +37,11 @@ export const getPortfolios = async () => {
   return await axiosInstance.get(url).then(res => res.data);
 };
 
-export const getPortfolioById = async (id) => {
-  return await axiosInstance.get(`/portfolios/${id}`).then(response => response.data);
-}
+export const getPortfolioById = async id => {
+  return await axiosInstance
+    .get(`/portfolios/${id}`)
+    .then(response => response.data);
+};
 
 export const createPortfolio = async portfolioData => {
   return await axiosInstance
@@ -55,19 +57,30 @@ export const updatePortfolio = async portfolioData => {
     .catch(err => rejectPromise(err));
 };
 
-export const deletePortfolio = (portfolioId) => {
-  return axiosInstance.delete(`portfolios/${portfolioId}`, setAuthHeader()).then(response => response.data)
-}
+export const deletePortfolio = portfolioId => {
+  return axiosInstance
+    .delete(`portfolios/${portfolioId}`, setAuthHeader())
+    .then(response => response.data);
+};
 
 // ********** BLOG ACTIONS ************
 
 export const createBlog = (blogData, lockId) => {
-  return axiosInstance.post(`/blogs?lockId=${lockId}`, blogData, setAuthHeader())
+  return axiosInstance
+    .post(`/blogs?lockId=${lockId}`, blogData, setAuthHeader())
     .then(response => {
-      return response.data
-    }).catch(err => rejectPromise(err))
-}
+      return response.data;
+    })
+    .catch(err => rejectPromise(err));
+};
 
-export const getBlogById = (blogId) => {
+export const updateBlog = (blogData, blogId) => {
+  return axiosInstance
+    .patch(`/blogs/${blogId}`, blogData, setAuthHeader())
+    .then(response => response.data)
+    .catch(err => rejectPromise(err));
+};
+
+export const getBlogById = blogId => {
   return axiosInstance.get(`/blogs/${blogId}`).then(response => response.data);
-}
+};
