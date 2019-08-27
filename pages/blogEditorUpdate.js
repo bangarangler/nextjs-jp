@@ -2,6 +2,7 @@ import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout.js';
 import BasePage from '../components/BasePage.js';
 import SlateEditor from '../components/slate-editor/Editor.js';
+import {toast} from 'react-toastify';
 
 import withAuth from '../components/hoc/withAuth.js';
 import {getBlogById, updateBlog} from '../actions';
@@ -26,19 +27,25 @@ class BlogEditorUpdate extends React.Component {
   }
 
   updateBlog(story, heading) {
-    const { blog } = this.props;
-    const updatedBlog = {}
+    const {blog} = this.props;
+    const updatedBlog = {};
     updatedBlog.title = heading.title;
-    updatedBlog.subTitle = heading.subtitle
-    updatedBlog.story = story
-    this.setState({ isSaving: true })
+    updatedBlog.subTitle = heading.subtitle;
+    updatedBlog.story = story;
+    this.setState({isSaving: true});
 
-    updateBlog(updatedBlog, blog._id).then(updatedBlog => {
-      this.setState({ isSaving: false });
-    }).catch(err => {
-      this.setState({ isSaving: false })
-      const message = err.message || 'Server Error!'
-    })
+    updateBlog(updatedBlog, blog._id)
+      .then(updatedBlog => {
+        toast.success('Blog Saved Successfuly!');
+        this.setState({isSaving: false});
+      })
+      .catch(err => {
+        this.setState({isSaving: false});
+        const message = err.message || 'Server Error!';
+        toast.error(
+          'Unexpected Error, Copy your progress and refresh browser.',
+        );
+      });
   }
 
   render() {

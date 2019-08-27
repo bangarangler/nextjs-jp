@@ -1,9 +1,11 @@
 import React from 'react';
 import App, {Container} from 'next/app';
 import auth0 from '../services/auth0.js';
+import { ToastContainer } from 'react-toastify';
 // STYLINGS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/main.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const namespace = process.env.NAMESPACE;
 
@@ -28,6 +30,7 @@ export default class MyApp extends App {
     const {Component, pageProps, auth} = this.props;
     return (
       <Container>
+        <ToastContainer />
         <Component {...pageProps} auth={auth} />
       </Container>
     );
