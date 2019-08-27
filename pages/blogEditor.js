@@ -1,9 +1,10 @@
 import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout.js';
 import BasePage from '../components/BasePage.js';
+import withAuth from '../components/hoc/withAuth.js';
+import { Router } from '../routes.js';
 import SlateEditor from '../components/slate-editor/Editor.js';
 
-import withAuth from '../components/hoc/withAuth.js';
 import { createBlog } from '../actions';
 
 class BlogEditor extends React.Component {
@@ -21,13 +22,12 @@ class BlogEditor extends React.Component {
     blog.story = story
     this.setState({ isSaving: true })
 
-    createBlog(blog).then(data => {
-      this.setState({ isSaving: false })
-      console.log(data)
+    createBlog(blog).then(createdBlog => {
+      this.setState({ isSaving: false });
+      Router.pushRoute(`/blogs/${createdBlog._id}/edit`);
     }).catch(err => {
       this.setState({ isSaving: false })
       const message = err.message || 'Server Error!'
-      console.error(err.message)
     })
   }
 

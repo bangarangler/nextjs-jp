@@ -4,11 +4,11 @@ import HoverMenu from './HoverMenu';
 import ControlMenu from './ControlMenu.js';
 import {Editor} from 'slate-react';
 import {renderMark, renderNode} from './renderers';
-import { initialValue } from './initial-value';
+import {initialValue} from './initial-value';
 import Html from 'slate-html-serializer';
-import { rules } from './rules';
-const html = new Html({ rules });
-import { Value } from 'slate';
+import {rules} from './rules';
+const html = new Html({rules});
+import {Value} from 'slate';
 
 export default class SlateEditor extends React.Component {
   state = {
@@ -17,8 +17,10 @@ export default class SlateEditor extends React.Component {
   };
 
   componentDidMount() {
-    const  valueFromProps = this.props.initialValue;
-    const value = valueFromProps ? Value.fromJSON(html.deserialize(this.props.initialValue)) : Value.fromJSON(initialValue)
+    const valueFromProps = this.props.initialValue;
+    const value = valueFromProps
+      ? Value.fromJSON(html.deserialize(valueFromProps))
+      : Value.fromJSON(initialValue);
     this.updateMenu();
     this.setState({isLoaded: true, value});
   }
@@ -56,26 +58,26 @@ export default class SlateEditor extends React.Component {
   };
 
   getTitle() {
-    const { value } = this.state;
-    const firstBlock = value.document.getBlocks().get(0)
-    const secondBlock = value.document.getBlocks().get(1)
-    const title = firstBlock && firstBlock.text ? firstBlock.text : 'No Title'
-    const subtitle = secondBlock && secondBlock.text ? secondBlock.text : 'No Subtitle'
+    const {value} = this.state;
+    const firstBlock = value.document.getBlocks().get(0);
+    const secondBlock = value.document.getBlocks().get(1);
+    const title = firstBlock && firstBlock.text ? firstBlock.text : 'No Title';
+    const subtitle =
+      secondBlock && secondBlock.text ? secondBlock.text : 'No Subtitle';
     return {
       title,
-      subtitle
-    }
+      subtitle,
+    };
   }
 
   save() {
-    const { value } = this.state;
-    const { save, isLoading } = this.props;
-    const headingValues = this.getTitle()
-    const text = html.serialize(value)
+    const {value} = this.state;
+    const {save, isLoading} = this.props;
+    const headingValues = this.getTitle();
+    const text = html.serialize(value);
 
-    !isLoading && save(text, headingValues)
+    !isLoading && save(text, headingValues);
   }
-
 
   render() {
     const {isLoaded} = this.state;
@@ -98,7 +100,7 @@ export default class SlateEditor extends React.Component {
 
   renderEditor = (props, editor, next) => {
     const children = next();
-    const { isLoading } = props;
+    const {isLoading} = props;
     return (
       <>
         <ControlMenu isLoading={isLoading} save={() => this.save()} />
