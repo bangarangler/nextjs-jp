@@ -4,6 +4,13 @@ const router = express.Router();
 const blogController = require('../controllers/blog.js');
 const authService = require('../services/auth.js');
 
+router.get(
+  '/me',
+  authService.checkJWT,
+  authService.checkRole('siteOwner'),
+  blogController.getUserBlogs,
+);
+
 router.get('/:id', blogController.getBlogById);
 
 router.post(
