@@ -35,8 +35,8 @@ exports.updateBlog = (req, res) => {
       foundBlog.slug = slugify(foundBlog.title, {
         replacement: '-',
         remove: null,
-        lower: true
-      })
+        lower: true,
+      });
     }
 
     foundBlog.set(blogData);
