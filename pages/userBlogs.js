@@ -5,6 +5,7 @@ import withAuth from '../components/hoc/withAuth.js';
 import {Container, Row, Col} from 'reactstrap';
 import {getUserBlogs} from '../actions';
 import {Link} from '../routes';
+import PortButtonDropdown from '../components/ButtonDropdown.js';
 
 class UserBlogs extends React.Component {
   static async getInitialProps({req}) {
@@ -34,6 +35,7 @@ class UserBlogs extends React.Component {
             <Link route={`/blogs/${blog._id}/edit`}>
               <a>{blog.title}</a>
             </Link>
+          <PortButtonDropdown />
           </li>
         ))}
       </ul>
