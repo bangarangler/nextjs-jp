@@ -2,7 +2,7 @@ import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout.js';
 import BasePage from '../components/BasePage.js';
 import withAuth from '../components/hoc/withAuth.js';
-import {Container, Row, Col} from 'reactstrap';
+import {Button, Container, Row, Col} from 'reactstrap';
 import {getUserBlogs, updateBlog, deleteBlog} from '../actions';
 import {Link, Router} from '../routes';
 import PortButtonDropdown from '../components/ButtonDropdown.js';
@@ -27,18 +27,20 @@ class UserBlogs extends React.Component {
   }
 
   deleteBlogWarning(blogId) {
-    const res = confirm('Are you sure you want to delete this Blog Post?')
+    const res = confirm('Are you sure you want to delete this Blog Post?');
     if (res) {
-      this.deleteBlog(blogId)
+      this.deleteBlog(blogId);
     }
   }
 
   deleteBlog(blogId) {
-    deleteBlog(blogId).then(status => {
-      Router.pushRoute('/userBlogs')
-    }).catch (err  => {
-      console.error(err)
-    })
+    deleteBlog(blogId)
+      .then(status => {
+        Router.pushRoute('/userBlogs');
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   separateBlogs(blogs) {
@@ -62,7 +64,7 @@ class UserBlogs extends React.Component {
       {
         text: status.view,
         handlers: {
-          onClick: () => this.changeBlogStatus(status.value, blog._id ),
+          onClick: () => this.changeBlogStatus(status.value, blog._id),
         },
       },
       {
@@ -100,8 +102,13 @@ class UserBlogs extends React.Component {
             <div className="row">
               <div className="col-lg-8 col-md-10 mx-auto">
                 <div className="site-heading">
-                  <h1>Fresh Blogs</h1>
-                  <span className="subheading">Programming, travelling...</span>
+                  <h1>Blogs Dashboard</h1>
+                  <span className="subheading">
+                    Whats going on recently?{' '}
+                    <Link route="/blogs/new">
+                      <Button color="primary">Create a new Blog</Button>
+                    </Link>
+                  </span>
                 </div>
               </div>
             </div>
