@@ -8,7 +8,7 @@ exports.getBlogs = (req, res) => {
     if (err) {
       return res.status(422).send(err);
     }
-    return res.json({publishedBlogs});
+    return res.json(publishedBlogs);
   });
 };
 
