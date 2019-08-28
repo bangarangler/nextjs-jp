@@ -3,26 +3,48 @@ import BaseLayout from '../components/layouts/BaseLayout.js';
 import BasePage from '../components/BasePage.js';
 import withAuth from '../components/hoc/withAuth.js';
 import {Container, Row, Col} from 'reactstrap';
-import { getUserBlogs } from '../actions';
+import {getUserBlogs} from '../actions';
+import {Link} from '../routes';
 
 class UserBlogs extends React.Component {
-  static async getInitialProps({ req }) {
+  static async getInitialProps({req}) {
     let blogs = [];
     try {
-      blogs = await getUserBlogs(req)
+      blogs = await getUserBlogs(req);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-    return { blogs }
+    return {blogs};
   }
-  render() {
-    const { blogs } = this.props;
-    console.log(blogs)
+
+  separateBlogs(blogs) {
+    const published = [];
+    const drafts = [];
+    blogs.forEach(blog => {
+      blog.status === 'draft' ? drafts.push(blog) : published.push(blog);
+    });
+    return {published, drafts};
+  }
+
+  renderBlogs(blogs) {
     return (
-      <BaseLayout
-        {...this.props.auth}
-        headerType={'landing'}
-         >
+      <ul className="user-blogs-list">
+        {blogs.map((blog, index) => (
+          <li key={index}>
+            <Link route={`/blogs/${blog._id}/edit`}>
+              <a>{blog.title}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  render() {
+    const {blogs} = this.props;
+    const {published, drafts} = this.separateBlogs(blogs);
+    return (
+      <BaseLayout {...this.props.auth} headerType={'landing'}>
         <div
           className="masthead"
           style={{backgroundImage: "url('/static/images/home-bg.jpg')"}}>
@@ -41,10 +63,12 @@ class UserBlogs extends React.Component {
         <BasePage className="blog-user-page">
           <Row>
             <Col md="6" className="mx-auto text-center">
-              Published Blogs
+              <h2 className="blog-status-title">Published Blogs</h2>
+                {this.renderBlogs(published)}
             </Col>
             <Col md="6" className="mx-auto text-center">
-              Draft Blogs
+              <h2 className="blog-status-title">Draft Blogs</h2>
+                {this.renderBlogs(drafts)}
             </Col>
           </Row>
         </BasePage>
