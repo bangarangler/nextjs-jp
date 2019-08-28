@@ -27,6 +27,22 @@ class UserBlogs extends React.Component {
     return {published, drafts};
   }
 
+  createStatus(status) {
+    return status === 'draft' ? { view: 'Publish Blog', value: 'published' } : { view: "Unpublish Blog", value: 'draft' }
+  }
+
+  dropdownOptions = (blog) => {
+    const blogStatus = this.createStatus(blog.status)
+    return [
+      {
+        text: blogStatus.view
+      },
+      {
+        text: 'Delete'
+      }
+    ]
+  }
+
   renderBlogs(blogs) {
     return (
       <ul className="user-blogs-list">
@@ -35,7 +51,7 @@ class UserBlogs extends React.Component {
             <Link route={`/blogs/${blog._id}/edit`}>
               <a>{blog.title}</a>
             </Link>
-          <PortButtonDropdown />
+          <PortButtonDropdown items={this.dropdownOptions(blog)} />
           </li>
         ))}
       </ul>
