@@ -45,7 +45,7 @@ class Index extends React.Component {
               <Col md="6">
                 <div className="hero-section">
                   <div className={`flipper ${isFlipping ? 'isFlipping' : ""}`}>
-                    <div className="back">
+                    <div className="front">
                       <div className="hero-section-content">
                         <h2> Full Stack Web Developer </h2>
                         <div className="hero-section-content-intro">
@@ -60,6 +60,21 @@ class Index extends React.Component {
                         <div className="shadow-inner"> </div>
                       </div>
                     </div>
+                      <div className="back">
+                        <div className="hero-section-content">
+                          <h2> Feel free to reach out!</h2>
+                          <div className="hero-section-content-intro">
+                            I look forward to speaking with you!
+                          </div>
+                        </div>
+                        <img
+                          className="image"
+                          src="/static/images/section-2.png"
+                        />
+                        <div className="shadow-custom">
+                          <div className="shadow-inner"> </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </Col>

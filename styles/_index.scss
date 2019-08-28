@@ -124,6 +124,18 @@
   transform: rotateY(-180deg);
 }
 
-.back {
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
   transform: rotateY(0deg);
+  z-index: 9999;
+}
+
+.back {
+  transform: rotateY(180deg);
 }
