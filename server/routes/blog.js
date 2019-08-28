@@ -13,6 +13,8 @@ router.get(
   blogController.getUserBlogs,
 );
 
+router.get('/s/:slug', blogController.getBlogBySlug);
+
 router.get('/:id', blogController.getBlogById);
 
 router.post(
