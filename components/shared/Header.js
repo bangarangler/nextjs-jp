@@ -114,10 +114,13 @@ export default class Header extends React.Component {
 
   render() {
     const {isAuthenticated, user, className} = this.props;
+    const { isOpen } = this.state;
+
+    const menuOpenClass = isOpen ? 'menu-open' : 'menu-closed'
     return (
       <div>
         <Navbar
-          className={`port-navbar port-nav-base absolute ${className}`}
+          className={`port-navbar port-nav-base absolute ${className} ${menuOpenClass}`}
           color="transparent"
           dark
           expand="md">
