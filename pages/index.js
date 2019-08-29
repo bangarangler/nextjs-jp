@@ -5,36 +5,52 @@ import {Container, Row, Col, Button} from 'reactstrap';
 
 class Index extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      isFlipping: false
-    }
+      isFlipping: false,
+    };
 
-    this.roles = ['Developer', 'React', 'Node.js', 'GraphQL', 'MongoDB', 'SQL', 'Python', 'C', 'Gatsby', 'Next.js', 'Express', 'Svelte', 'Sapper']
+    this.roles = [
+      'Developer',
+      'React',
+      'Node.js',
+      'GraphQL',
+      'MongoDB',
+      'SQL',
+      'Python',
+      'C',
+      'Gatsby',
+      'Next.js',
+      'Express',
+      'Svelte',
+      'Sapper',
+    ];
   }
 
   componentDidMount() {
-    this.animateCard()
+    this.animateCard();
   }
 
   componentDidUnmount() {
-    this.cardAnimationInterval && clearInterval(this.cardAnimationInterval)
+    this.cardAnimationInterval && clearInterval(this.cardAnimationInterval);
   }
 
   animateCard() {
     this.cardAnimationInterval = setInterval(() => {
       this.setState({
-        isFlipping: !this.state.isFlipping
-      })
-    }, 3000)
+        isFlipping: !this.state.isFlipping,
+      });
+    }, 5000);
   }
 
-
   render() {
-    const { isAuthenticated, user } = this.props.auth;
-    const { isFlipping } = this.state;
+    const {isAuthenticated, user} = this.props.auth;
+    const {isFlipping} = this.state;
     return (
-      <BaseLayout {...this.props.auth} className="cover" headerType="index">
+      <BaseLayout
+        {...this.props.auth}
+        className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`}
+        headerType="index">
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png" />
@@ -44,7 +60,7 @@ class Index extends React.Component {
             <Row>
               <Col md="6">
                 <div className="hero-section">
-                  <div className={`flipper ${isFlipping ? 'isFlipping' : ""}`}>
+                  <div className={`flipper ${isFlipping ? 'isFlipping' : ''}`}>
                     <div className="front">
                       <div className="hero-section-content">
                         <h2> Full Stack Web Developer </h2>
@@ -60,44 +76,48 @@ class Index extends React.Component {
                         <div className="shadow-inner"> </div>
                       </div>
                     </div>
-                      <div className="back">
-                        <div className="hero-section-content">
-                          <h2> Feel free to reach out!</h2>
-                          <div className="hero-section-content-intro">
-                            I look forward to speaking with you!
-                          </div>
-                        </div>
-                        <img
-                          className="image"
-                          src="/static/images/section-2.png"
-                        />
-                        <div className="shadow-custom">
-                          <div className="shadow-inner"> </div>
+                    <div className="back">
+                      <div className="hero-section-content">
+                        <h2> Feel free to reach out!</h2>
+                        <div className="hero-section-content-intro">
+                          I look forward to speaking with you!
                         </div>
                       </div>
+                      <img
+                        className="image"
+                        src="/static/images/section-2.png"
+                      />
+                      <div className="shadow-custom shadow-custom-2">
+                        <div className="shadow-inner"> </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Col>
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
-                    { isAuthenticated && <span><b>{user.given_name} &nbsp;</b></span> }
+                    {isAuthenticated && (
+                      <span>
+                        <b>{user.given_name} &nbsp;</b>
+                      </span>
+                    )}
                     Welcome to my server side rendered portfolio website! Get
                     informed, collaborate and discover projects I've worked on
                     through the years!
                   </h1>
                 </div>
-                  <Typed
-                    loop
-                    typeSpeed={60}
-                    backSpeed={60}
-                    strings={this.roles}
-                    backDelay={1000}
-                    loopCount={0}
-                    showCursor
-                    cursorChar="|"
-                    className="self-typed"
-                  />
+                <Typed
+                  loop
+                  typeSpeed={60}
+                  backSpeed={60}
+                  strings={this.roles}
+                  backDelay={1000}
+                  loopCount={0}
+                  showCursor
+                  cursorChar="|"
+                  className="self-typed"
+                />
                 <div className="hero-welcome-bio">
                   <h1>Let's take a look at my work.</h1>
                 </div>
