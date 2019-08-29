@@ -31,7 +31,7 @@ class Index extends React.Component {
     this.animateCard();
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     this.cardAnimationInterval && clearInterval(this.cardAnimationInterval);
   }
 
