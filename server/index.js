@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const next = require('next');
 const mongoose = require('mongoose');
 const routes = require('../routes.js');
@@ -17,6 +18,13 @@ const bodyParser = require('body-parser');
 const bookRoutes = require('./routes/book.js');
 const portfolioRoutes = require('./routes/portfolio.js');
 const blogRoutes = require('./routes/blog.js');
+
+const robotsOptions = {
+  root: path.join(__dirname, '../static'),
+  headers: {
+    'Content-Type': "text/plain;charset=UTF-8"
+  }
+}
 
 const secretData = [
   {
@@ -43,6 +51,10 @@ app
     server.use('/api/v1/books', bookRoutes);
     server.use('/api/v1/portfolios', portfolioRoutes)
     server.use('/api/v1/blogs', blogRoutes)
+
+    server.get('/robots.txt', (req, res) => {
+      return res.status(200).sendFile('robots.txt', robotsOptions);
+    })
 
     //server.use(handle)
 
