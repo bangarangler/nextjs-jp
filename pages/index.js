@@ -50,7 +50,7 @@ class Index extends React.Component {
       <BaseLayout
         {...this.props.auth}
         className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`}
-        headerType="index">
+        headerType="index" title="Jonathan Palacio | Full Stack Developer">
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png" />

@@ -1,48 +1,49 @@
 import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout.js';
 import BasePage from '../components/BasePage';
-import moment from 'moment'
-import { Container, Row, Col } from 'reactstrap';
-import { Link } from '../routes';
-import { getBlogs } from '../actions';
-import { shortenText } from '../helpers/utils.js';
-
+import moment from 'moment';
+import {Container, Row, Col} from 'reactstrap';
+import {Link} from '../routes';
+import {getBlogs} from '../actions';
+import {shortenText} from '../helpers/utils.js';
 
 class Blogs extends React.Component {
-  static async getInitialProps({ req }) {
-    let blogs = []
+  static async getInitialProps({req}) {
+    let blogs = [];
     try {
-    blogs = await getBlogs(req)
+      blogs = await getBlogs(req);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-    return { blogs }
+    return {blogs};
   }
 
-  renderBlogs = (blogs) => (
+  renderBlogs = blogs =>
     blogs.map((blog, index) => {
       return (
-      <div key={index} className="post-preview">
-        <Link route={`/blogs/${blog.slug}`}>
-          <a>
-            <h2 className="post-title">{blog.title}</h2>
-            <h3 className="post-subtitle">{shortenText(blog.subTitle)}</h3>
-          </a>
-        </Link>
-        <p className="post-meta">
-          Posted by{' '}
-          <a href="#">{blog.author}{' '}</a>
-          {moment(blog.createdAt).format('LL')}
-        </p>
-      </div>
-      )
-    })
-  )
+        <div key={index} className="post-preview">
+          <Link route={`/blogs/${blog.slug}`}>
+            <a>
+              <h2 className="post-title">{blog.title}</h2>
+              <h3 className="post-subtitle">{shortenText(blog.subTitle)}</h3>
+            </a>
+          </Link>
+          <p className="post-meta">
+            Posted by <a href="#">{blog.author} </a>
+            {moment(blog.createdAt).format('LL')}
+          </p>
+        </div>
+      );
+    });
 
   render() {
-    const { blogs } = this.props;
+    const {blogs} = this.props;
     return (
-      <BaseLayout {...this.props.auth} headerType={'landing'} className="blog-listing-page">
+      <BaseLayout
+        title="Jon Palacio - Newest Blog Posts"
+        {...this.props.auth}
+        headerType={'landing'}
+        className="blog-listing-page">
         <div
           className="masthead"
           style={{backgroundImage: "url('/static/images/home-bg.jpg')"}}>
@@ -61,9 +62,7 @@ class Blogs extends React.Component {
         <BasePage className="blog-body">
           <Row>
             <Col md="10" lg="8" className="mx-auto">
-              {
-                this.renderBlogs(blogs)
-              }
+              {this.renderBlogs(blogs)}
               <div className="clearfix">
                 <a className="btn btn-primary float-right" href="#">
                   Older Posts &rarr;

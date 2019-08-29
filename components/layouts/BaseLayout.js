@@ -3,12 +3,12 @@ import Header from '../shared/Header.js';
 import Head from 'next/head';
 
 const BaseLayout = props => {
-  const {className, children, isAuthenticated, user, isSiteOwner} = props;
+  const {className, children, isAuthenticated, user, isSiteOwner, title} = props;
   const headerType = props.headerType || 'default';
   return (
     <>
       <Head>
-        <title>Jonathan Dain Palacio</title>
+        <title>{title}</title>
         <script src="https://kit.fontawesome.com/530582d694.js" />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
