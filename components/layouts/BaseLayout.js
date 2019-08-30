@@ -41,8 +41,7 @@ const BaseLayout = props => {
         )}
             <link rel="icon" type="image/ico" href="/static/favicon.ico" />
         <script src="https://kit.fontawesome.com/530582d694.js" />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
         />
       </Head>

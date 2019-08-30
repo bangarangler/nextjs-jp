@@ -127,6 +127,9 @@ class Index extends React.Component {
               </Col>
             </Row>
           </Container>
+      <span className="service-link">Vector illustration credit: <a  href="https://www.vecteezy.com/">
+            Free Vector Art by Vecteezy!
+      </a></span>
         </div>
       </BaseLayout>
     );
