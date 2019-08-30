@@ -10,6 +10,7 @@ const BaseLayout = props => {
     user,
     isSiteOwner,
     title,
+    cannonical,
   } = props;
   const headerType = props.headerType || 'default';
   return (
@@ -35,6 +36,9 @@ const BaseLayout = props => {
           property="og:description"
           content="Hi I'm Jon! I'm a web developer with a extreme interest in marketing and business! I've owned a few business's in my time and I still enjoy the thrill of planning and organizing a business. Regardless if it's day one or you have been in business for generations; I'm confident that I can make it even better!"
         />
+        {cannonical && (
+          <link rel="cannonical" href={`http://localhost:3000${cannonical}`} />
+        )}
         <script src="https://kit.fontawesome.com/530582d694.js" />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"

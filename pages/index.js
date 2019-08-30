@@ -50,10 +50,14 @@ class Index extends React.Component {
       <BaseLayout
         {...this.props.auth}
         className={`cover ${isFlipping ? 'cover-1' : 'cover-0'}`}
-        headerType="index" title="Jonathan Palacio | Full Stack Developer">
+        headerType="index"
+        title="Jonathan Palacio | Full Stack Developer">
         <div className="main-section">
           <div className="background-image">
-            <img src="/static/images/background-index.png" />
+            <img
+              src="/static/images/background-index.png"
+              alt="Guy programming welcome picture"
+            />
           </div>
 
           <Container>
@@ -71,6 +75,7 @@ class Index extends React.Component {
                       <img
                         className="image"
                         src="/static/images/section-1.png"
+                        alt="Guy programming welcome picture"
                       />
                       <div className="shadow-custom">
                         <div className="shadow-inner"> </div>
@@ -119,7 +124,7 @@ class Index extends React.Component {
                   className="self-typed"
                 />
                 <div className="hero-welcome-bio">
-                  <h1>Let's take a look at my work.</h1>
+                  <h2>Let's take a look at my work.</h2>
                 </div>
               </Col>
             </Row>
