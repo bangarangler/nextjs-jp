@@ -54,10 +54,7 @@ class Index extends React.Component {
         title="Jonathan Palacio | Full Stack Developer">
         <div className="main-section">
           <div className="background-image">
-            <img
-              src="/static/images/background-index.png"
-              alt="Guy programming welcome picture"
-            />
+            <img src="/static/images/background-index.png" />
           </div>
 
           <Container>
@@ -91,6 +88,7 @@ class Index extends React.Component {
                       <img
                         className="image"
                         src="/static/images/section-2.png"
+                        alt="Guy programming welcome picture"
                       />
                       <div className="shadow-custom shadow-custom-2">
                         <div className="shadow-inner"> </div>
