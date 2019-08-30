@@ -2,14 +2,14 @@
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
-const namespace = process.env.NAMESPACE;
+//const namespace = process.env.NAMESPACE;
 
 // MIDDLEWARE
 exports.checkJWT = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
-    jwksRequestsPerMinute: 15,
+    jwksRequestsPerMinute: 50,
     jwksUri: process.env.JWKS_URI,
   }),
   audience: process.env.AUTH0_CLIENT_ID,
@@ -20,7 +20,7 @@ exports.checkJWT = jwt({
 exports.checkRole = role => (req, res, next) => {
   const user = req.user;
 
-  if (user && (user[`${namespace}role`] === role)) {
+  if (user && (user[`${process.env.NAMESPACE}/role`] === role)) {
     next();
   } else {
     return res

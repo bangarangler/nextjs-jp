@@ -30,14 +30,14 @@ const BaseLayout = props => {
           content="Jon Palacio - programmer, developer, full-stack"
         />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content="http://localhost:3000" />
+        <meta property="og:url" content={`${process.env.BASE_URL}`} />
         <meta property="og:type" content="website" />
         <meta
           property="og:description"
           content="Hi I'm Jon! I'm a web developer with a extreme interest in marketing and business! I've owned a few business's in my time and I still enjoy the thrill of planning and organizing a business. Regardless if it's day one or you have been in business for generations; I'm confident that I can make it even better!"
         />
         {cannonical && (
-          <link rel="cannonical" href={`http://localhost:3000${cannonical}`} />
+          <link rel="cannonical" href={`${process.env.BASE_URL}${cannonical}`} />
         )}
             <link rel="icon" type="image/ico" href="/static/favicon.ico" />
         <script src="https://kit.fontawesome.com/530582d694.js" />
