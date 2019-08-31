@@ -1,6 +1,6 @@
 // INDEX PAGE
 .cover {
-  background-image: linear-gradient(45deg,#00aeef 0%,#096fb9 100%);
+  background-image: linear-gradient(45deg, #00aebf 0%,#096fb9 100%);
   position: relative;
 }
 
@@ -18,10 +18,31 @@
 }
 
 .hero-section{
+  @media (max-width: 800px) {
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 700px) {
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 600px) {
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
   h2 {
     color: white;
     font-weight: bold;
     margin-bottom: 10px;
+    @media (max-width: 800px) {
+      font-size: 1rem;
+    }
+    @media (max-width: 700px) {
+      font-size: 1.5rem;
+    }
+    @media (max-width: 600px) {
+      font-size: 1.5rem;
+    }
   }
 
   perspective: 1000px;
@@ -38,6 +59,15 @@
 
     &-intro {
       font-size: 17px;
+      @media (max-width: 800px) {
+        font-size: 1rem;
+      }
+      @media (max-width: 700px) {
+        font-size: 1rem;
+      }
+      @media (max-width: 600px) {
+        font-size: 1rem;
+      }
     }
   }
 }
@@ -115,7 +145,7 @@
 }
 
 .shadow-custom-2 {
-  border: 2px solid #f37d49;
+  border: 2px solid #8c14fc;
   box-shadow: -17px 13px 41px rgba(13,78,158,0.3);
 }
 
@@ -123,7 +153,8 @@
 }
 
 .cover-1 {
-  background-image: linear-gradient(45deg, rgb(254, 202, 83), rgb(253, 157, 97));
+  background-image: linear-gradient(45deg, rgb(140, 20, 252),
+  rgb(115,101,152));
 }
 
 .flipper {

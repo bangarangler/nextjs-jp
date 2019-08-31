@@ -17,6 +17,10 @@
   }
 
   .post-preview {
+    @media (max-width: 600px) {
+      max-width: 100%;
+      overflow: hidden;
+    }
     > a {
       color: $gray-900;
       &:focus,
