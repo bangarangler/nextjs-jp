@@ -54,7 +54,7 @@ class Index extends React.Component {
         title="Jonathan Palacio | Full Stack Developer">
         <div className="main-section">
           <div className="background-image">
-            <img src="/static/images/background-index.png" />
+            <img style={{maxWidth: '100%'}} src="/static/images/background-index.png" />
           </div>
 
           <Container>
