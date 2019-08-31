@@ -40,10 +40,6 @@ const BaseLayout = props => {
           <link rel="cannonical" href={`${process.env.BASE_URL}${cannonical}`} />
         )}
             <link rel="icon" type="image/ico" href="/static/favicon.ico" />
-        <script src="https://kit.fontawesome.com/530582d694.js" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
       </Head>
       <div className="layout-container">
         <Header

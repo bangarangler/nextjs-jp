@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const next = require('next');
 const mongoose = require('mongoose');
@@ -47,6 +48,7 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    server.use(compression());
     server.use(bodyParser.json());
     server.use('/api/v1/books', bookRoutes);
     server.use('/api/v1/portfolios', portfolioRoutes)
@@ -95,7 +97,7 @@ app
 
     const PORT = process.env.PORT || 3000;
 
-    server.listen(PORT, err => {
+    server.use(handle).listen(PORT, err => {
       if (err) throw err;
       console.log(`Ready on ${PORT}`);
     });
