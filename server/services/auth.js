@@ -2,7 +2,8 @@
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
-//const namespace = process.env.NAMESPACE;
+const config = require('../config');
+const NAMESPACE = config.NAMESPACE
 
 // MIDDLEWARE
 exports.checkJWT = jwt({
@@ -20,7 +21,7 @@ exports.checkJWT = jwt({
 exports.checkRole = role => (req, res, next) => {
   const user = req.user;
 
-  if (user && (user[`${process.env.NAMESPACE}/role`] === role)) {
+  if (user && user[NAMESPACE + 'role'] && (user[NAMESPACE + '/role'] === role)) {
     next();
   } else {
     return res
