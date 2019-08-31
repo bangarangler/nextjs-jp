@@ -5,7 +5,7 @@ import {getCookieFromReq} from '../helpers/utils.js';
 
 const axiosInstance = axios.create({
   baseURL: `${process.env.BASE_URL}/api/v1`,
-  timeout: 5000,
+  timeout: 8000,
 });
 
 const setAuthHeader = req => {
