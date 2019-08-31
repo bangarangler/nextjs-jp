@@ -71,7 +71,7 @@ class Index extends React.Component {
                       </div>
                       <img
                         className="image"
-                        src="/static/images/section-1.png"
+                        src="/static/images/section-1.jpg"
                         alt="Guy programming welcome picture"
                       />
                       <div className="shadow-custom">
@@ -87,7 +87,7 @@ class Index extends React.Component {
                       </div>
                       <img
                         className="image"
-                        src="/static/images/section-2.png"
+                        src="/static/images/section-2.jpg"
                         alt="Guy programming welcome picture"
                       />
                       <div className="shadow-custom shadow-custom-2">
