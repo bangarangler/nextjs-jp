@@ -93,6 +93,10 @@
   position: absolute;
   width: 1762px;
   height: 493px;
+  max-width: fit-content;
+  max-width: -moz-fit-content;
+  max-width: -webkit-fit-content;
+  max-width: intrinsic;
 }
 
 .shadow-custom {
