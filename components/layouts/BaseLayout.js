@@ -36,10 +36,17 @@ const BaseLayout = props => {
           property="og:description"
           content="Hi I'm Jon! I'm a web developer with a extreme interest in marketing and business! I've owned a few business's in my time and I still enjoy the thrill of planning and organizing a business. Regardless if it's day one or you have been in business for generations; I'm confident that I can make it even better!"
         />
+        <link
+          href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+          rel="stylesheet"
+        />
         {cannonical && (
-          <link rel="cannonical" href={`${process.env.BASE_URL}${cannonical}`} />
+          <link
+            rel="cannonical"
+            href={`${process.env.BASE_URL}${cannonical}`}
+          />
         )}
-            <link rel="icon" type="image/ico" href="/static/favicon.ico" />
+        <link rel="icon" type="image/ico" href="/static/favicon.ico" />
       </Head>
       <div className="layout-container">
         <Header
