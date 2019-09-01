@@ -24,21 +24,7 @@ class About extends React.Component {
                   My name is Jon Palacio and I am an experienced software
                   engineer and freelance developer.{' '}
                 </p>
-                <p>
-                  I'm 31 years young and have made it to the top of every
-                  industry I have had the pleasure to work in. I've driven
-                  tractor trailers, excelled at marketing and communication,
-                  founded and helped maintain a massage therapy business, and
-                  most recently ran a startup company as the Lead Locksmith /
-                  Business Manager!
-                </p>
-                <p>
-                  My skills are constantly growing and while the top of those
-                  industries where great, my heart has always been in technology
-                  and security. I'm very security focused and find software
-                  development to be the most fascinating and compelling journey
-                  I've been on in quite a long time.
-                </p>
+                <p>This is not my actual portfolio just wanted to get in some practice with NEXTJS and Server Side Rendering with React.  I've really enjoyed working with NEXTJS!  Exciting things happening all over the place in the JavaScript community!</p>
               </div>
             </Col>
           </Row>
